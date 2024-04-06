@@ -20,7 +20,7 @@ export default function ProductCard(props) {
         </div>
         <h1 className='text-text text-[13px] font-[700]' onClick={()=>{setModalProductId(props.p_id); props.openProduct(true);setSelectededProduct(product)}}>{props?.name}</h1>
         <div className='flex justify-between items-center'>
-            <h1 className='text-text text-[13px] font-[700] mr-3' onClick={()=>{setModalProductId(props.p_id); props.openProduct(true);setSelectededProduct(product)}}>&#8377; {product?.price}</h1>
+            <h1 className='text-text text-[13px] font-[700] mr-3' onClick={()=>{setModalProductId(props.p_id); props.openProduct(true);setSelectededProduct(product)}}>  ${product?.price}</h1>
             <button className='text-dark text-[13px] font-[600] bg-light-background border-2 border-dark px-[12px] md:px-[19.2px] py-[4px] md:py-[7px] rounded-[6px]' onClick={()=>{setModalProductId(props.p_id); props.openProduct(true);setSelectededProduct(product)}}>{isProductInCart?'Update':'Add'}</button>
         </div>
       </div>

@@ -34,7 +34,7 @@ export default function ProductCardWishlist(props) {
                 </h1>
                 <div className='flex justify-between items-center'>
                     <h1 className='text-text text-[13px] font-[700] mr-3' onClick={() => handleProductClick()}>
-                        &#8377; {productDetails?.price}
+                          ${productDetails?.price}
                     </h1>
                     <button
                         className='text-dark text-[13px] font-[600] bg-light-background border-2 border-dark px-[19.2px] py-[7px] rounded-[6px]'

@@ -52,7 +52,7 @@ export default function CartModal(props) {
             console.log(orderResponse?.data.order)
             console.log(orderResponse?.data?.order,'---------------========')
             setOrderDetails(orderResponse?.data.order);
-            toast.success(`Order for amount ${orderResponse?.data?.order?.amount} placed successfully with id ${orderResponse?.data?.order?.id}`, { duration: 4000 });
+            toast.success(`Order for amount $ ${orderResponse?.data?.order?.amount} placed successfully with id ${orderResponse?.data?.order?.id}`, { duration: 4000 });
             refetchCartListing();
             setShowOrderModal(true);
             setTimeout(() => {
@@ -77,76 +77,75 @@ export default function CartModal(props) {
           document.body.appendChild(script);
         });
       }
-    
-  
-    async function displayRazorpay(order) {
+      
+      async function displayRazorpay(order) {
         setLoading(true);
         const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
-    
+      
         if (!res) {
-            alert("Razorpay SDK failed to load. Are you online?");
-            setLoading(false);
-            return;
+          alert("Razorpay SDK failed to load. Are you online?");
+          setLoading(false);
+          return;
         }
-    console.log((Number(orderDetails?.amount) + 15) * 100);
-    console.log(typeof(order),order,'----------------order-------------------');
-    const totalAmountInPaise = Math.ceil(Number(order?.amount) + Number(15)) * 100;
-
+        console.log((Number(orderDetails?.amount) + 15));
+        console.log(typeof(order), order, '----------------order-------------------');
+        const totalAmountInDollars = Math.ceil((Number(order?.amount) + Number(15))*100);
+      
         const options = {
-            key: "rzp_test_FELPeq7HeVvV2w",
-            amount: totalAmountInPaise,
-            currency: 'INR',
-            name: "Thilla",
-            description: "Testing Thilla",
-            order_id: orderDetails?.order_id,
-            handler: async function (response) {
-                try {
-                    const verificationResponse = await verifySignature({
-                        variables: {
-                            input: {
-                                orderId: response.razorpay_order_id,
-                                paymentId: response.razorpay_payment_id,
-                                signature: response.razorpay_signature
-                            }
-                        }
-                    });
-                    if (verificationResponse.data.verifyPaymentSignature.status === "SUCCESS") {
-                        setLoading(false);
-                        navigate("/home");
-                    } else {
-                        navigate("/home");
-
-                        toast.error("Payment verification failed");
-                    }
-                } catch (error) {
-                    console.error('Error verifying payment signature:', error);
-                    setLoading(false);
-                    navigate("/home");
+          key: "rzp_test_FELPeq7HeVvV2w",
+          amount: totalAmountInDollars,
+          currency: 'USD',
+          name: "Thilla",
+          description: "Testing Thilla",
+          order_id: orderDetails?.order_id,
+          handler: async function (response) {
+            try {
+              const verificationResponse = await verifySignature({
+                variables: {
+                  input: {
+                    orderId: response.razorpay_order_id,
+                    paymentId: response.razorpay_payment_id,
+                    signature: response.razorpay_signature
+                  }
                 }
-            },
-            prefill: {
-                name: "Thilla",
-                email: "contact@thilla.com",
-                contact: "6377955567"
-            },
-            theme: {
-                color: "#61dafb"
-            },
-            modal: {
-                ondismiss: function () {
-                    setLoading(false);
-                }
+              });
+              if (verificationResponse.data.verifyPaymentSignature.status === "SUCCESS") {
+                setLoading(false);
+                navigate("/home");
+              } else {
+                navigate("/home");
+                toast.error("Payment verification failed");
+              }
+            } catch (error) {
+              console.error('Error verifying payment signature:', error);
+              setLoading(false);
+              navigate("/home");
             }
+          },
+          prefill: {
+            name: "Thilla",
+            email: "contact@thilla.com",
+            contact: "6377955567"
+          },
+          theme: {
+            color: "#61dafb"
+          },
+          modal: {
+            ondismiss: function () {
+              setLoading(false);
+            }
+          }
         };
-    
+      
         try {
-            const paymentObject = new window.Razorpay(options);
-            paymentObject.open();
+          const paymentObject = new window.Razorpay(options);
+          paymentObject.open();
         } catch (err) {
-            console.error("Error during payment creation or Razorpay modal opening:", err);
-            setLoading(false);
+          console.error("Error during payment creation or Razorpay modal opening:", err);
+          setLoading(false);
         }
-    }
+      }
+      
     
     return (
         <div className="fixed bg-transparent top-0 left-0 right-0 bottom-0">
@@ -174,8 +173,8 @@ export default function CartModal(props) {
                                         <h1 className="text-text text-[14px] font-[500]">{product.name}</h1>
                                         <p className="text-text text-[14px] font-[400]">{product.quantity}x{product.unit_name}</p>
                                         <div className="flex gap-[4px]">
-                                            <p className="text-text text-[14px] font-[400]">&#8377; {product.price}</p>
-                                            <p className="text-[#A5A5A5] text-[14px] font-[400] line-through">&#8377; {product.price}</p>
+                                            <p className="text-text text-[14px] font-[400]">  ${product.price}</p>
+                                            <p className="text-[#A5A5A5] text-[14px] font-[400] line-through">  ${product.price}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -212,16 +211,16 @@ export default function CartModal(props) {
                     <h1 className="text-[16px] font-[500]">Amount</h1>
                     <div className="flex justify-between">
                         <p>MRP</p>
-                        <p>&#8377; {cartTotal}</p>
+                        <p>  ${cartTotal}</p>
                     </div>
                 {Number(cartTotal)>0&&    <div className="flex justify-between">
                         <p>Delivery Charges</p>
-                        <p>&#8377; 15</p>
+                        <p>  $ 15</p>
                     </div>}
                 </div>
                 <div className="flex justify-between items-center bg-primary-brand px-[16px] py-[8px] rounded-md">
                     <div>
-                    <h1 className="text-text text-[16px] font-[600]">&#8377; {Number(cartTotal) + ((Number(cartTotal) > 0) ? 15 : 0)}</h1>
+                    <h1 className="text-text text-[16px] font-[600]"> $ {Number(cartTotal) + ((Number(cartTotal) > 0) ? 15 : 0)}</h1>
                         <p>TOTAL</p>
                     </div>
                     <div className="cursor-pointer flex gap-[4px]" onClick={handlePlaceOrder}>
@@ -236,7 +235,7 @@ export default function CartModal(props) {
                         <h1>Order Details</h1>
                         <p>Order ID: {orderDetails?.order_id}</p>
                         <p>Status: {orderDetails?.status}</p>
-                        <p>Total: &#8377; {Number(orderDetails?.amount)+15}</p>
+                        <p>Total:   {Number(orderDetails?.amount)+15}</p>
                         <div className="flex gap-[8px] mt-[16px]">
                             <button onClick={handlePayment}>Proceed to Payment</button>
                             <button onClick={() => setShowOrderModal(false)}>Close</button>

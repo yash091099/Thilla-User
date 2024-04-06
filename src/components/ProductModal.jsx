@@ -105,7 +105,7 @@ export default function ProductModal(props) {
                                     <p className='text-text text-[12px] font-[400]'>{selectedProduct?.sku}</p>
                                 </div>
                                 <div className='flex gap-[4px]'>
-                                    <p className='text-text text-[12px] md:text-[16px] font-[600]'>&#8377; {selectedProduct?.price}</p>
+                                    <p className='text-text text-[12px] md:text-[16px] font-[600]'>  ${selectedProduct?.price}</p>
                                 </div>
                                 <p className='hidden md:block text-text text-[12px] md:text-[16px] font-[600]'>Total stock quantity : {selectedProduct?.stock_available} </p>
                             </div>

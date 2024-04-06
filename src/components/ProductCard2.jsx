@@ -30,7 +30,7 @@ export default function ProductCard(props) {
                 </div>
                 <h1 className='text-text text-[10px] font-[700]' onClick={() => { props.openProduct(true) }}>{name}</h1>
                 <div className='flex justify-between items-center'>
-                    <h1 className='text-text text-[10px] font-[700]' onClick={() => { props.openProduct(true) }}>&#8377; {price}</h1>
+                    <h1 className='text-text text-[10px] font-[700]' onClick={() => { props.openProduct(true) }}> $ {price}</h1>
                     <button className='text-dark text-[10px] font-[600] bg-light-background border-2 border-dark ml-3 px-[19.2px] py-[7px] rounded-[6px]' onClick={ handleAddOrUpdate}>
                         {isProductInCart ? 'In Cart' : 'Add'}
                     </button>
