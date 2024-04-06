@@ -6,8 +6,8 @@ import moment from 'moment';
 import { getNotifications, markNotificationAsRead } from '../context/services/notification';
 import CustomLoader from './loader';
 import toast from 'react-hot-toast';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export default function NotificationsModal(props) {
     const [data, setData] = useState([]);
@@ -62,8 +62,8 @@ export default function NotificationsModal(props) {
                 </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }} onClick={() => handleMarkAsRead(x.id)}>
-                <span className="cursor-pointer" title='Mark as read'>X
-                    {/* <FontAwesomeIcon icon={faTimes} /> */}
+                <span className="cursor-pointer" title='Mark as read'>
+                    <FontAwesomeIcon icon={faTimes} />
                 </span>
             </div>
         </div>

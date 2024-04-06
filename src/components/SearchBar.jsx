@@ -12,7 +12,7 @@ export default function SearchBar(props) {
     const [searchResultProducts, setSearchResultProducts] = useState([]);
     const [searchResultStores, setSearchResultStores] = useState([]);
     const [showPanel, setShowPanel] = useState(false);
-    const {userProfile,refetchProfile,setSelectededProduct,products} = useContext(Context);
+    const {userProfile,refetchProfile,setSelectededProduct,products,setStoreId} = useContext(Context);
     const navigate=useNavigate()
     // useEffect(() => {
     //     refetchProfile()
@@ -63,7 +63,7 @@ export default function SearchBar(props) {
                             <h3 className='text-center font-semibold'>Stores</h3>
                             <div className='grid grid-cols-1 gap-4 p-4'>
                                 {searchResultStores.map(store => (
-                                    <div key={store.id} className='flex justify-between items-center p-4 bg-gray-100 rounded-lg shadow cursor-pointer' onClick={() => {setSelectededProduct(products.find(product => product.store_id === store.id)); navigate('/root/store')}}>
+                                    <div key={store.id} className='flex justify-between items-center p-4 bg-gray-100 rounded-lg shadow cursor-pointer' onClick={() => {setStoreId(store?.id);setSelectededProduct(products.find(product => product.store_id === store.id)); navigate('/root/store')}}>
                                         <span>{store.name}</span>
                                         <img src={store?.passport_photo || logo} alt="Store" className='w-10 h-10 rounded-full' />
                                     </div>
@@ -76,7 +76,7 @@ export default function SearchBar(props) {
                             <h3 className='text-center font-semibold'>Products</h3>
                             <div className='grid grid-cols-1 gap-4 p-4'>
                                 {searchResultProducts.map(product => (
-                                    <div key={product.id} className='flex justify-between items-center p-4 bg-gray-100 rounded-lg shadow cursor-pointer' onClick={() => {setSelectededProduct(product); navigate('/root/store')}}>
+                                    <div key={product.id} className='flex justify-between items-center p-4 bg-gray-100 rounded-lg shadow cursor-pointer' onClick={() => {setStoreId(product?.store_id);setSelectededProduct(product); navigate('/root/store')}}>
                                         <span>{product.name}</span>
                                         <img src={product?.image || logo} alt="Product" className='w-10 h-10 rounded-full' />
                                     </div>

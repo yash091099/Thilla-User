@@ -62,7 +62,7 @@ export default function SearchResult() {
           <div className='flex lg:justify-center gap-[50.75px] mt-[48px] overflow-scroll no-scrollbar'>
             <div className='flex w-[70%] max-w-[70%] flex-wrap justify-start gap-[50.75px] px-[16px]'>
               {data.slice(0, showAll ? data.length : 6).map((item) => (
-                <StoresCardT1 key={item.user_id} image={item.front_photo} name={item.name} isSaved={false} />
+                <StoresCardT1 key={item.user_id} image={item.front_photo} id={item.id}  name={item.name} isSaved={false} />
               ))}
             </div>
             {data.length > 6 && !showAll && (
@@ -83,8 +83,8 @@ export default function SearchResult() {
             <h1 className='text-left text-text text-[20px] font-[600]'>Stores to help you save</h1>
             <div className='flex flex-wrap md:grid md:grid-cols-3 gap-[16px] max-w-[1274px] md:py-[16px] overflow-scroll no-scrollbar'>
               {data.map((item, index) => (
-                <StoresCardT2 key={index} image={item.front_photo} name={item.name} isSaved={false} />
-              ))}
+                <StoresCardT2 key={index} image={item?.front_photo} id={item.id}  name={item?.name} isSaved={false} />
+              ))} 
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@ export default function SearchResult() {
         <img className='w-[125px]' src={Logo} alt='logo' />
         <div className='flex flex-col justify-center items-center gap-[6px]'>
           <h2 className='text-text text-[20px] font-[600]'>There's more to explore</h2>
-          <p className='text-text text-[16px] font-[400]'>Shop {data.length} more (and counting) in your area.</p>
+          <p className='text-text text-[16px] font-[400]'>Shop {data?.length} more (and counting) in your area.</p>
         </div>
       </div>
     </div>

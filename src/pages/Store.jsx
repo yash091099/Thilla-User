@@ -11,9 +11,11 @@ import { getProductsByStores } from "../context/services/stores";
 import CustomLoader from "../components/loader";
 import Context from "../context/AppContext";
 export default function Store() {
-  const { showProductModal, setShowProductModal, searchInputProductNavbar } =
+  const { showProductModal,storeId, setShowProductModal, searchInputProductNavbar } =
     useContext(Context);
-  const [displayType, setDisplayType] = useState(1);
+
+    console.log(storeId,'-------------------------------store id ')
+  const [displayType, setDisplayType] = useState(storeId||1);
   const [storeData, setStoreData] = useState({});
   const [loading, setLoading] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -22,7 +24,7 @@ export default function Store() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await getProductsByStores(1);
+        const response = await getProductsByStores(storeId||1);
         if (response?.data?.success) {
           setStoreData(response?.data);
           console.log(response.data);

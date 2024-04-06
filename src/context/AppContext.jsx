@@ -16,6 +16,7 @@ export function AppContext({ children }) {
   const [searchInputProductNavbar, setSearchInputProductNavbar] = useState('');
   const [userProfile, setUserProfile] = useState({});
   const [products, setProducts] = useState([]);
+  const [storeId, setStoreId] = useState([]);
 
   const [showCart, setShowCart] = useState(false);
   const [wishlistProducts, setWishListProducts] = useState([]);
@@ -80,6 +81,8 @@ useEffect(() => {
         refetchCartListing,
         setShowProductModal,
         setSelectededProduct,
+        setStoreId,
+        storeId,
         selectedProduct,
         showNotifications,
         searchInputProductNavbar, setSearchInputProductNavbar,
