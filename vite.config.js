@@ -8,5 +8,10 @@ export default defineConfig({
     rollupOptions: {
       external: ['@fortawesome/free-solid-svg-icons']
     }
+  },
+  resolve: {
+    alias: {
+      '@babel/runtime': path.resolve(__dirname, 'node_modules/@babel/runtime')
+    }
   }
 })
