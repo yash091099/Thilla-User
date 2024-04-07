@@ -87,7 +87,7 @@ export default function Settings() {
         <NavBar />
         <Outlet />
         <div className="flex flex-col items-center py-10">
-          <form className="w-full max-w-lg" onSubmit={handleSubmit}>
+          <form className="mb-[150px] w-full max-w-lg" onSubmit={handleSubmit}>
             {/* Address Line 1 */}
             <div className="w-full px-3 mb-6">
               <label
@@ -255,7 +255,7 @@ export default function Settings() {
           width: "100%",
           textAlign: "center",
         }}
-        className="flex flex-col md:flex-row justify-between gap-[24px] bg-primary-brand w-full px-[16px] md:px-[128px] py-[24px]"
+        className=" flex flex-col md:flex-row justify-between gap-[24px] bg-primary-brand w-full px-[16px] md:px-[128px] py-[24px]"
       >
         <div className="flex flex-col md:flex-row gap-[12px] md:gap-[24px]">
           <Link className="text-text text-[16px] font-[500]" to="/about">
