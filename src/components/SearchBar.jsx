@@ -45,7 +45,7 @@ export default function SearchBar(props) {
                 <img className="w-[16px] md:w-[24px]" src={LocationPin} alt="Location" />
                 <div className='block text-[12px] md:text-[20px] font-[600] bg-transparent'>
                     <select className='outline-none bg-transparent text-ellipsis'>
-                    <option>{userProfile?.address_line_1||'Address Line 1'}, {userProfile?.pincode||'xxxxxx'}</option>
+                    <option>{userProfile?.pincode||'xxxxxx'}</option>
                     </select>
                 </div>
             </div>

@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import toast from 'react-hot-toast';
-import { updateProfile,getProfile } from "../context/services/profile";
-import CustomLoader from '../components/loader';
+import toast from "react-hot-toast";
+import { updateProfile, getProfile } from "../context/services/profile";
+import CustomLoader from "../components/loader";
 import Context from "../context/AppContext";
 export default function Settings() {
-  const {refetchProfile} = useContext(Context)
+  const { refetchProfile } = useContext(Context);
   const [formData, setFormData] = useState({
     address_line_1: "",
     address_line_2: "",
@@ -16,7 +16,7 @@ export default function Settings() {
     pincode: "",
   });
   const [loading, setLoading] = useState(false);
-  
+
   const [errors, setErrors] = useState({});
   useEffect(() => {
     const fetchData = async () => {
@@ -29,15 +29,14 @@ export default function Settings() {
           country: response?.data?.profile?.country,
           state: response?.data?.profile?.state,
           city: response?.data?.profile?.city,
-          pincode: response?.data?.profile?.pincode
+          pincode: response?.data?.profile?.pincode,
         });
         setLoading(false);
       }
-        setLoading(false);
-      
+      setLoading(false);
     };
     fetchData();
-  },[])
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,14 +50,14 @@ export default function Settings() {
     }
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
     Object.entries(formData).forEach(([key, value]) => {
       if (!value) newErrors[key] = "This field is required";
     });
     setErrors(newErrors);
-    
+
     if (Object.keys(newErrors).length === 0) {
       console.log("Updated Profile:", formData);
       try {
@@ -67,17 +66,16 @@ export default function Settings() {
         if (response?.data?.success) {
           toast.success(response?.data?.message);
           console.log("Profile Updated");
-          refetchProfile()
+          refetchProfile();
         } else {
           toast.error(response?.data?.message);
         }
       } catch (error) {
         toast.error(error.message || "An unexpected error occurred.");
         console.error("Update profile error:", error);
-      }finally{
+      } finally {
         setLoading(false);
       }
-      
     } else {
       console.log("Errors:", newErrors);
     }
@@ -250,7 +248,14 @@ export default function Settings() {
         </div>
       </div>
       <div
-       style={{position: "absolute", bottom: "0"}}   className="flex flex-col md:flex-row justify-between gap-[24px] bg-primary-brand w-full px-[16px] md:px-[128px] py-[24px]"
+        style={{
+          position: "fixed",
+          left: "0",
+          bottom: "0",
+          width: "100%",
+          textAlign: "center",
+        }}
+        className="flex flex-col md:flex-row justify-between gap-[24px] bg-primary-brand w-full px-[16px] md:px-[128px] py-[24px]"
       >
         <div className="flex flex-col md:flex-row gap-[12px] md:gap-[24px]">
           <Link className="text-text text-[16px] font-[500]" to="/about">
@@ -287,8 +292,7 @@ export default function Settings() {
           </Link>
         </div>
       </div>
-      {loading && <CustomLoader/>}
-
+      {loading && <CustomLoader />}
     </>
   );
 }

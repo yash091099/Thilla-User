@@ -28,7 +28,7 @@ export default function NavBar() {
                     <img className="w-[24px]" src={LocationPin} alt="Location" />
                     <div className='text-[20px] font-[600] bg-transparent'>
                         <select className='outline-none bg-transparent'>
-                        <option>{userProfile?.address_line_1||'Address Line 1'}, {userProfile?.pincode||'xxxxxx'}</option>
+                        <option> {userProfile?.pincode||'xxxxxx'}</option>
                         </select>
                     </div>
                 </div>
@@ -68,7 +68,7 @@ export default function NavBar() {
                     <img className="w-[12px] lg:w-[24px]" src={LocationPin} alt="Location" />
                     <div className='text-[10px] lg:text-[20px] font-[600]'>
                         <select className='outline-none bg-transparent'>
-                        <option>{userProfile?.address_line_1||'Address Line 1'}, {userProfile?.pincode||'xxxxxx'}</option>
+                        <option> {userProfile?.pincode||'xxxxxx'}</option>
                         </select>
                     </div>
                 </div>
