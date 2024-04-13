@@ -12,7 +12,7 @@ export default function ProductCard(props) {
 
   return (
     <div className='w-full flex flex-col items-center justify-center gap-[16px] h-[288px] px-[4px] sm:px-[8px] py-[16px] border-2 border-light-background rounded-md shadow-md'>
-      <img className='cursor-pointer w-[120px]' src={props.image} action="product image" onClick={()=>{setModalProductId(props.p_id); props.openProduct(true);setSelectededProduct(product)}}/>
+      <img className='cursor-pointer w-[120px] h-[120px' src={props.image} action="product image" onClick={()=>{setModalProductId(props.p_id); props.openProduct(true);setSelectededProduct(product)}}/>
       <div className='flex flex-col gap-[8px] px-[4px] md:px-[16px]'>
         <div className='flex items-center gap-[2px] px-[4px] py-[2px]'>
             <img className='w-[11px]' src={timerIcon} alt="timer"/>

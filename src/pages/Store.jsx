@@ -154,7 +154,7 @@ export default function Store() {
                 p_id={product.id}
                 name={product.name}
                 price={product.price}
-                image={`https://thilaa.jethitech.com/storage/${product.image}`}
+                image={`${product.image}`}
                 openProduct={setShowProductModal}
               />
             ))}
