@@ -95,7 +95,7 @@ export default function ProductModal(props) {
                 </div>
                 <div className='flex gap-[8px] md:gap-[40px]'>
                     <div className='md:w-1/3 flex justify-center items-center'>
-                        <img className="w-[110px] md:w-[200px] max-h-[220px]" src={'https://thilaa.jethitech.com/storage/' + selectedProduct?.image} alt="product" />
+                        <img className="w-[110px] md:w-[200px] max-h-[220px]" src={selectedProduct?.image?.includes('https://') ? selectedProduct?.image : `https://thilaa.jethitech.com/storage/${selectedProduct?.image}`}  alt="product" />
                     </div>
                     <div className='md:w-2/3 flex flex-col gap-[8px] xxl:gap-[24px] md:p-[12px] xxl:p-[32px] md:border border-[#A5A5A5] w-full rounded-md shadow-sm'>
                         <div className='flex justify-between items-center gap-[4px]'>

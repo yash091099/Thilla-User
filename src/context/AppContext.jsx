@@ -11,17 +11,21 @@ export function AppContext({ children }) {
 
   const [showProductModal, setShowProductModal] = useState(false);
   const [modalProductId, setModalProductId] = useState(undefined);
-  const [showNotifications, setShowNotifications] = useState(true);
-  const [selectedProduct, setSelectededProduct] = useState({});
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [selectedProduct, setSelectededProduct] = useState(JSON.parse(localStorage.getItem('selectedProduct')) || {});
   const [searchInputProductNavbar, setSearchInputProductNavbar] = useState('');
   const [userProfile, setUserProfile] = useState({});
   const [products, setProducts] = useState([]);
-  const [storeId, setStoreId] = useState([]);
+  const [storeId, setStoreId] = useState(localStorage.getItem('storeId'));
 
   const [showCart, setShowCart] = useState(false);
   const [wishlistProducts, setWishListProducts] = useState([]);
   const [cartProducts, setCartProducts] = useState();
 
+
+  const setNotificationsOn=()=>{
+    setShowNotifications(!showNotifications)
+  }
 useEffect(() => {
   getProfile().then((res) => {
     console.log(res.data.profile,'------------------cart listing response')
@@ -87,6 +91,7 @@ useEffect(() => {
         showNotifications,
         searchInputProductNavbar, setSearchInputProductNavbar,
         setShowNotifications,
+        setNotificationsOn,
         showCart,
         setShowCart,
         wishlistProducts,

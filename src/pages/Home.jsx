@@ -29,7 +29,7 @@ export default function Home() {
           </>
         )}
       </div>
-      <div className='flex flex-col items-center gap-[7rem] -translate-y-6x'>
+      <div className='flex flex-col items-center gap-[2rem] -translate-y-6x'>
         <img className="cursor-pointer w-32 h-32" src={Logo} alt="logo" onClick={() => { navigate('/home'); }} />
         <div className='w-4/5'>
           <SearchBar setLoadingTrue={() => setLoading(true)} setLoadingFalse={() => setLoading(false)} />

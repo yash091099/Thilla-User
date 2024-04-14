@@ -11,6 +11,8 @@ import { getProductsByStores } from "../context/services/stores";
 import CustomLoader from "../components/loader";
 import Context from "../context/AppContext";
 export default function Store() {
+
+
   const { showProductModal,storeId, setShowProductModal, searchInputProductNavbar } =
     useContext(Context);
 
@@ -20,6 +22,11 @@ export default function Store() {
   const [loading, setLoading] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
+  useEffect(() => {
+      return () => {
+        localStorage.setItem('storeId', storeId);
+      }
+  },[])
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -150,11 +157,12 @@ export default function Store() {
             {filteredProducts.map((product) => (
               <ProductCard
               product={product}
-                key={product.id}
-                p_id={product.id}
-                name={product.name}
-                price={product.price}
-                image={`${product.image}`}
+                key={product?.id}
+                p_id={product?.id}
+                name={product?.name}
+                price={product?.price}
+                image={`${product?.image}`}
+                stock_available={product?.stock_available}
                 openProduct={setShowProductModal}
               />
             ))}

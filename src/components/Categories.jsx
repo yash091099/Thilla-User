@@ -18,7 +18,7 @@ export default function Categories() {
       },[])
 
   return (
-    <div className='flex 2xl:justify-center gap-[24px] md:gap-[48px] pt-[16px] px-[16px] w-full bg-light-background overflow-scroll no-scrollbar'>
+    <div className='flex 2xl:justify-center gap-[14px] md:gap-[34px] pt-[12px] px-[16px] w-full bg-light-background overflow-scroll no-scrollbar'>
       {loading && <CustomLoader />} 
       {data && data.map((item, index) => {
             return (

@@ -12,13 +12,15 @@ export default function ProductCard(props) {
 
   return (
     <div className='w-full flex flex-col items-center justify-center gap-[16px] h-[288px] px-[4px] sm:px-[8px] py-[16px] border-2 border-light-background rounded-md shadow-md'>
-      <img className='cursor-pointer w-[120px] h-[120px' src={props.image} action="product image" onClick={()=>{setModalProductId(props.p_id); props.openProduct(true);setSelectededProduct(product)}}/>
+      <img className='cursor-pointer w-[120px] h-[120px]' src={props.image} action="product image" onClick={()=>{setModalProductId(props.p_id); props.openProduct(true);setSelectededProduct(product)}}/>
       <div className='flex flex-col gap-[8px] px-[4px] md:px-[16px]'>
         <div className='flex items-center gap-[2px] px-[4px] py-[2px]'>
             <img className='w-[11px]' src={timerIcon} alt="timer"/>
             <p className='text-text text-[9px] font-[700]'>14 mins</p>
         </div>
         <h1 className='text-text text-[13px] font-[700]' onClick={()=>{setModalProductId(props.p_id); props.openProduct(true);setSelectededProduct(product)}}>{props?.name}</h1>
+        <p className='hidden md:block text-text text-[10px] md:text-[10px] font-[600]'>Stock quantity : {props?.stock_available} </p>
+
         <div className='flex justify-between items-center'>
             <h1 className='text-text text-[13px] font-[700] mr-3' onClick={()=>{setModalProductId(props.p_id); props.openProduct(true);setSelectededProduct(product)}}>  ${product?.price}</h1>
             <button className='text-dark text-[13px] font-[600] bg-light-background border-2 border-dark px-[12px] md:px-[19.2px] py-[4px] md:py-[7px] rounded-[6px]' onClick={()=>{setModalProductId(props.p_id); props.openProduct(true);setSelectededProduct(product)}}>{isProductInCart?'Update':'Add'}</button>

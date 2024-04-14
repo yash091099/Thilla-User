@@ -65,7 +65,8 @@ export default function SearchBar(props) {
                                 {searchResultStores.map(store => (
                                     <div key={store.id} className='flex justify-between items-center p-4 bg-gray-100 rounded-lg shadow cursor-pointer' onClick={() => {setStoreId(store?.id);setSelectededProduct(products.find(product => product.store_id === store.id)); navigate('/root/store')}}>
                                         <span>{store.name}</span>
-                                        <img src={`https://thilaa.jethitech.com/storage/${store?.front_photo}` || logo} alt="Store" className='w-10 h-10 rounded-full' />
+                                        <img    src={`${store?.front_photo?.includes('http') ? store?.front_photo : `https://thilaa.jethitech.com/storage/${store?.front_photo}`}`} alt="Store" className='w-10 h-10 rounded-full' />
+                                      
                                     </div>
                                 ))}
                                                                 {!searchResultStores.length && <p className='text-center'>No stores found</p>}
@@ -78,7 +79,7 @@ export default function SearchBar(props) {
                                 {searchResultProducts.map(product => (
                                     <div key={product.id} className='flex justify-between items-center p-4 bg-gray-100 rounded-lg shadow cursor-pointer' onClick={() => {setStoreId(product?.store_id);setSelectededProduct(product); navigate('/root/store')}}>
                                         <span>{product.name}</span>
-                                        <img src={`https://thilaa.jethitech.com/storage/${product?.image}`|| logo} alt="Product" className='w-10 h-10 rounded-full' />
+                                        <img  src={`${product?.image?.includes('http') ? product?.image: `https://thilaa.jethitech.com/storage/${product?.image}`}`}alt="Product" className='w-10 h-10 rounded-full' />
                                     </div>
                                 ))}
                                 {!searchResultProducts.length && <p className='text-center'>No products found</p>}

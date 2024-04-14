@@ -7,11 +7,13 @@ import menuIcon from '../assets/menu-list-icon.svg'
 import Logo from '../assets/Thilaa-Logo.svg'
 import cartIcon from '../assets/cart.svg'
 import Context from '../context/AppContext';
+import notificationIcon from '../assets/notification.gif';
 import { getProfile } from '../context/services/profile';
 import debounce from 'lodash.debounce'; // Import debounce
+import NotificationsModal from './NotificationsModal';
 
 export default function NavBar() {
-    const {setShowCart,userProfile,refetchProfile, wishlistProducts, cartProducts,searchInputProductNavbar, setSearchInputProductNavbar,updateAddress } = useContext(Context)
+    const {setShowCart,userProfile,refetchProfile, wishlistProducts, cartProducts,searchInputProductNavbar, setSearchInputProductNavbar,setNotificationsOn,updateAddress,showNotifications,setShowNotifications } = useContext(Context)
    
     const navigate = useNavigate();
     const authToken = localStorage.getItem('token');
@@ -49,6 +51,10 @@ export default function NavBar() {
                     <img className="w-[18px]"  src={cartIcon} alt="favoruite" />
                     <span>{cartProducts ? cartProducts.length:0}</span>
                 </div>
+                <div className='cursor-pointer flex gap-[4px] items-center' title='View Notifications' onClick={setNotificationsOn}>
+                <img className="w-[22px]"  src={notificationIcon} alt="favoruite" />
+
+                </div>
                 {
                 authToken ? <button className='bg-text text-white text-[16px] font-500 px-[32px] py-[16px] rounded-[6px]' 
                 onClick={   ()=>{localStorage.removeItem('token'); 
@@ -78,6 +84,8 @@ export default function NavBar() {
                 </div>
             </div>
         </div>
+              {showNotifications&&<NotificationsModal onClose={setShowNotifications}/>}
+
     </div>
   )
 }

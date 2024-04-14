@@ -6,8 +6,6 @@ import moment from 'moment';
 import { getNotifications, markNotificationAsRead } from '../context/services/notification';
 import CustomLoader from './loader';
 import toast from 'react-hot-toast';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export default function NotificationsModal(props) {
     const [data, setData] = useState([]);
