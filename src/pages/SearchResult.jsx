@@ -61,9 +61,9 @@ export default function SearchResult() {
         <div className='w-full p-[24px] md:p-[0px]'>
           <Categories />
           <div className='flex lg:justify-center gap-[50.75px] mt-[48px] overflow-scroll no-scrollbar'>
-            <div className='flex w-[70%] max-w-[70%] flex-wrap justify-start gap-[50.75px] px-[16px]'>
+            <div className='grid grid-cols-7 gap-[50.75px] px-[16px]'>
               {data.slice(0, showAll ? data.length : 7).map((item) => (
-                <StoresCardT1 key={item.user_id} image={item.front_photo} id={item.id}  name={item.name} isSaved={false} />
+                <StoresCardT1 key={item.user_id} image={item.front_photo} id={item.id} name={item.name} isSaved={false} />
               ))}
             </div>
             {data.length > 7 && !showAll && (
@@ -82,10 +82,10 @@ export default function SearchResult() {
           </div>
           <div className='flex flex-col gap-[25px] mt-[48px] max-w-[1274px] mx-auto px-[16px]'>
             <h1 className='text-left text-text text-[20px] font-[600]'>Stores to help you save</h1>
-            <div className='flex flex-wrap md:grid md:grid-cols-3  max-w-[1274px] md:py-[16px] overflow-scroll no-scrollbar'>
+            <div className='flex flex-wrap md:grid md:grid-cols-3 max-w-[1274px] md:py-[16px] overflow-scroll no-scrollbar'>
               {data.map((item, index) => (
-                <StoresCardT2 key={index} image={item?.front_photo} id={item.id}  name={item?.name} isSaved={false} />
-              ))} 
+                <StoresCardT2 key={index} image={item?.front_photo} id={item.id} name={item?.name} isSaved={false} />
+              ))}
             </div>
           </div>
         </div>
