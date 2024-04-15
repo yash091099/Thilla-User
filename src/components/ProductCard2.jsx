@@ -7,7 +7,7 @@ import { addProductToCart } from '../context/services/product';
 export default function ProductCard(props) {
     const { cartProducts ,refetchCartListing} = useContext(Context);
     const { image, name, price, p_id } = props;
-    const isProductInCart = cartProducts.some(product => product.product_id === p_id);
+    const isProductInCart = cartProducts?.some(product => product.product_id === p_id);
     const handleAddOrUpdate = async () => {
         if (isProductInCart) {
           return;
