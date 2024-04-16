@@ -29,6 +29,7 @@ export default function Store() {
   },[])
   useEffect(() => {
     const fetchData = async () => {
+      if(!storeId) return;
       setLoading(true);
       try {
         const response = await getProductsByStores(storeId||1);
