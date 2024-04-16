@@ -84,7 +84,7 @@ export default function SearchResult() {
             <h1 className='text-left text-text text-[20px] font-[600]'>Stores to help you save</h1>
             <div className='flex flex-wrap md:grid md:grid-cols-3 max-w-[1274px] md:py-[16px] overflow-scroll no-scrollbar'>
               {data.map((item, index) => (
-                <StoresCardT2 key={index} image={item?.front_photo} id={item.id} name={item?.name} isSaved={false} />
+                <StoresCardT2 key={item.user_id} image={item?.front_photo} id={item.id} name={item?.name} isSaved={false} />
               ))}
             </div>
           </div>
